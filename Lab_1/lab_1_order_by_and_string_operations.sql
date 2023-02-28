@@ -22,7 +22,8 @@ ORDER BY Country ASC, CompanyName ASC
 
 
 -- Total price for each of the position on OrderId 10250
-SELECT ProductID, UnitPrice, Quantity, Discount, (UnitPrice * Quantity) * (1 - Discount) AS TotalPrice 
+SELECT ProductID, UnitPrice, Quantity, Discount, 
+(UnitPrice * Quantity) * (1 - Discount) AS TotalPrice 
 FROM [Order Details]
 WHERE OrderID = 10250
 ORDER BY TotalPrice DESC
