@@ -21,9 +21,13 @@ WHERE Country IN ('Japan', 'Italy')
 ORDER BY Country ASC, CompanyName ASC
 
 
---  
-SELECT O.OrderID, O.Freight, D.UnitPrice, D.Quantity, D.Discount
-FROM Orders AS O, [Order Details] AS D
-WHERE O.OrderID = 10250
+-- Total price for each of the position on OrderId 10250
+SELECT ProductID, UnitPrice, Quantity, Discount, (UnitPrice * Quantity) * (1 - Discount) AS TotalPrice 
+FROM [Order Details]
+WHERE OrderID = 10250
+ORDER BY TotalPrice DESC
 
--- NOT DONE
+
+-- One column instead of phone number and fax number
+SELECT CompanyName, Phone + ', ' + Fax AS Contact
+FROM Suppliers
