@@ -23,15 +23,24 @@ ON E.City = C.City
 GROUP BY E.City
 ORDER BY E.City
 
--- 3. - not finished
-SELECT E.EmployeeID AS EmployeeCount, 
-    C.CustomerID AS CustomerCount,
-    E.City
+-- 3.
+
+SELECT COUNT(E.EmployeeID) AS EmployeeCount, 
+    COUNT(C.CustomerID) AS CustomerCount,
+    C.City
+FROM Employees AS E
+RIGHT JOIN Customers AS C
+ON E.City = C.City
+GROUP BY C.City
+ORDER BY C.City
+
+
+-- 4.
+
+SELECT COALESCE(E.city, C.city) AS City, COUNT(E.EmployeeID) AS EmployeeCount,
+    COUNT(C.CustomerID) AS CustomerCount
 FROM Employees AS E
 FULL JOIN Customers AS C
 ON E.City = C.City
-
-
-
-
-
+GROUP BY COALESCE(E.City, C.city)
+ORDER BY COALESCE(E.City, C.city)
